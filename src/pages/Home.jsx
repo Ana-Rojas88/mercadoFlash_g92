@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Container, Row, Col, Spinner } from 'react-bootstrap';
+import { useTheme } from "../context/ThemeProvider";
 
 function Home({ addToCart }) {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
+   const { theme } = useTheme();
+
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -15,7 +18,7 @@ function Home({ addToCart }) {
   }, []);
 
   return (
-    <Container className="mt-4">
+    <Container  className={theme === "light" ? "light-header" : "dark-header"}>
       <h2 className="mb-4">Productos</h2>
       {loading ? (
         <Spinner animation="border" />
