@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Table, Button } from "react-bootstrap";
+import { CartContext } from "../context/CartProvider";
 
-function Cart({ cartItems, updateQuantity, removeFromCart }) {
+function Cart() {
+
+  //Paso 3
+  const { cartItems, updateQuantity, removeFromCart } = useContext(CartContext)
+
   const total = cartItems
     .reduce((acc, item) => acc + item.price * item.quantity, 0)
     .toFixed(2);

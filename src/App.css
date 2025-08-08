@@ -15,3 +15,7 @@
 .read-the-docs {
   color: #888;
 }
+
+body{
+  height: 100vh;
+}

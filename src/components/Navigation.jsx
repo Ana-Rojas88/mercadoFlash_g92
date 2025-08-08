@@ -1,8 +1,15 @@
 import { Badge, Container, Nav, Navbar } from "react-bootstrap";
 import imgCart from "../assets/image/image.png";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
+import { useContext } from "react";
+import { CartContext } from "../context/CartProvider";
 
-const Navigation = ({cartCount, total}) => {
+const Navigation = () => {
+
+  const {getTotalPrice, cartItems} = useContext(CartContext)
+const total = getTotalPrice()
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container className="justify-content-start">
@@ -19,10 +26,11 @@ const Navigation = ({cartCount, total}) => {
               height="24"
               style={{ marginRight: "6px" }}
             />
-            <Badge bg="light" text="dark" className="me-2">{cartCount}</Badge>
+            <Badge bg="light" text="dark" className="me-2">{ cartItems.length}</Badge>
             <span style={{ color: '#fff' }}>Total: ${total}</span>
           </Link>
         </Nav>
+         <ThemeToggle />
       </Container>
     </Navbar>
   );
